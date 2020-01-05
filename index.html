@@ -16,18 +16,23 @@
         ctx.strokeStyle = '#BADA55';
         ctx.lineJoin = 'round';
         ctx.lineCap = 'round';
+        ctx.lineWidth = 100;
 
         let isDrawing = false; // allows the user to only activate drawing when the cursor is down or clicked
         let lastX = 0;
         let lastY = 0;
+        let hue = 0;
 
         function draw(e) {
             if(!isDrawing) return; // stops the function from running when they are not moused down (clicked down)
             console.log(e);
+            ctx.strokeStyle = `hsl(${hue}, 100%, 50%)`;
             ctx.beginPath(); // start from
             ctx.moveTo(lastX, lastY); // go to
             ctx.lineTo(e.offsetX, e.offsetY);
             ctx.stroke();
+            hue++;
+            
 
             // lastX = e.offsetX;
             // lastY = e.offsetY;
